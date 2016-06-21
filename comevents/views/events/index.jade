@@ -1,0 +1,22 @@
+extends ../../layouts/default
+
+block head
+	title View Events
+
+block body
+	.event
+		div.row
+			div.col-sm-8
+				div.page-header
+					h1 View Events
+				ul.errors
+					if data
+						each event, i in data
+							li
+								string= event.name
+								| - Posted By #{event.name}
+								p= event.description
+								a.btn.btn-default(href='/events/show/#{event._id}') Read More
+			div.col-sm-4
+				div.page-header
+					h1 Sidebar

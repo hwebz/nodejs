@@ -1,0 +1,40 @@
+using http://jedireza.github.io/drywall/ (A website and user system starter. Implemented with Express and Backbone.) (username: root, password: Dkbndkmvkl@1993)
+and using mongodb lab to host database cloud (https://mlab.com/databases/jimidark)
+(username:jimidark, email: devilart.93@gmail.com, password: Dkbndkvkl@1993,
+db account: db: jimidark, username: admin, password: dkbndkmvkl1)
+
+install Grunt:
+npm install -g grunt-cli (npm install grunt-cli --save-dev)
+git clone https://github.com/jedireza/drywall.git comevents
+(if you can't get repository, you can try to install ssh key: ssh-keygen -t rsa "devilart.93@gmail.com" -> copy into clipboard: clip < ~/.ssh/id_rsa.pub) 
+
+Run grunt to build
+
+create db and insert data:
+
+mongo ds025782.mlab.com:25782/jimidark -u admin -p dkbndkmvkl1
+
+use drywall; // or your mongo db name if different
+db.admingroups.insert({ _id: 'root', name: 'Root' });
+db.admins.insert({ name: {first: 'Root', last: 'Admin', full: 'Root Admin'}, groups: ['root'] });
+var rootAdmin = db.admins.findOne();
+db.users.save({ username: 'root', isActive: 'yes', email: 'your@email.addy', roles: {admin: rootAdmin._id} });
+var rootUser = db.users.findOne();
+rootAdmin.user = { id: rootUser._id, name: rootUser.username };
+db.admins.save(rootAdmin);
+
+update your email of root user in users table
+db.users.update({email: 'your@email.addy'}, {$set: {email: 'devilart.93@gmail.com'}});
+
+after change email info of root user, you need to reset email by go to this link: http://localhost:3000/login/forgot/ and enter your email. After that, you will get an email sent to your inbox and use the link to reset password. (Please config your email account in config.js file to be able to send mail).
+
+create event functionality in Drywall.
+add events table to db
+
+db.createCollection('events');
+db.events.insert({name:'Event One', description: 'This is the description for event one', date:ISODate('Julu 04, 2016'), startTime: '2:00pm', endTime: '5:00pm', venu: 'Venu One', username: 'tutsbyboy'});
+db.events.find().pretty();
+
+install 2 more packages:
+npm install connect-flash --save-dev
+npm install express-messages --save-dev
