@@ -1,0 +1,22 @@
+cd c:\mongodb\bin
+mongod --directoryperdb --dbpath c:\mongodb\data --logpath c:\mongodb\log\mongodb.log --logappend -rest --install
+net start MongoDB
+mongo
+db
+show dbs
+use nodeauth
+db.createCollection('ures');
+show collections
+show dbs
+db.users.insert({name:"Ha Manh Do",email:"jimi.dark@gmail.com",username:"jimidark",password:"dkbndkmvkl"})
+db.users.find().pretty();
+db.users.update({username:"jimidark"},{$set:{email:"jimi.dark.93@gmail.com"}})
+db.users.remove({});
+
+use nodeblog
+db.createCollection('posts');
+db.createCollection('categories');
+db.posts.insert({title:"Blog Post One",category:"Technology",author:"Brad Traversy",body:"This is the body",data:ISODate()})
+db.posts.insert({title:"Blog Post Two",category:"Fashion",author:"John Doe",body:"This is the body for a fashion post",data:ISODate()})
+db.categories.insert({title:"Technology"})
+db.categories.insert({title:"Fashion"})

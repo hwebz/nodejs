@@ -1,0 +1,21 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "Some description",
+  "main": "server.js",
+  "scripts": {
+    "test": "node",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "nodejs"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "JD",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
